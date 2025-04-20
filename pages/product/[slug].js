@@ -1,32 +1,38 @@
 import React from "react";
 import { client, urlFor } from "../../lib/client";
+import Product from "../../components/Product";
+import Banner from "../../components/Banner";
 
-const ProductDetails = ({ products, product }) => {
-  console.log(product);
+const ProductDetails = ({ products, banners }) => {
   return (
     <>
-      <div>
-        {/* <img src={urlFor()} /> */}
-        {product.name}
+      <Banner heroBanner={banners.length && banners[0]} />
+      <div className="p-4">
+        <ul className="flex gap-8 justify-center items-center flex-wrap">
+          {products.length &&
+            products.map((product, index) => (
+              <li key={index}>
+                <Product product={product} />
+              </li>
+            ))}
+        </ul>
       </div>
     </>
   );
 };
 
 export const getStaticPaths = async () => {
-  const query = `*[_type == 'product'] {
+  const query = `*[_type == 'category'] {
   slug {
      current
    }
   }`;
 
-  const products = await client.fetch(query);
-  console.log("hello world");
-  // console.log(products);
+  const categories = await client.fetch(query);
 
-  const paths = products.map((product) => ({
+  const paths = categories.map((category) => ({
     params: {
-      slug: product.slug.current,
+      slug: category.slug.current,
     },
   }));
 
@@ -37,14 +43,12 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params: { slug } }) => {
-  const query = `*[_type == 'product' && slug.current == '${slug}'][0]`;
-  const productQuery = `*[_type == 'product']`;
-
-  const product = await client.fetch(query);
-  const products = await client.fetch(productQuery);
-
+  const query = `*[_type == 'product' && category->slug.current == '${slug}']`;
+  const products = await client.fetch(query);
+  const bannerQuery = `*[_type == 'banner']`;
+  const banners = await client.fetch(bannerQuery);
   return {
-    props: { products, product },
+    props: { products, banners },
   };
 };
 

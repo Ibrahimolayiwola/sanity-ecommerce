@@ -15,8 +15,8 @@ const Navbar = () => {
     setSearchBar(e.target.value);
   };
   return (
-    <div className="sticky left-0 top-0 bg-white shadow-2xl h-20 w-full z-20 px-4 max-sm:hidden">
-      <div className="flex justify-between max-w-6xl mx-auto items-center gap-10">
+    <div className="sticky left-0 top-0 bg-white h-20 w-full z-10 px-4 max-sm:hidden">
+      <div className="flex justify-between max-w-7xl mx-auto items-center gap-10">
         <div>
           <Image
             className=""

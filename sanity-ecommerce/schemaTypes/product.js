@@ -24,6 +24,7 @@ export default {
       options: {
         source: 'name',
         maxLength: 90,
+        slugify: (input) => input.toLowerCase().replace(/\s+/g, '-'),
       },
     },
     {
@@ -45,6 +46,12 @@ export default {
       name: 'price',
       title: 'Price',
       type: 'number',
+    },
+    {
+      name: 'category',
+      title: 'Category',
+      type: 'reference',
+      to: [{type: 'category'}],
     },
   ],
 }
