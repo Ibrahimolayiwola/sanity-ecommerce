@@ -17,6 +17,9 @@ const config: Config = {
         'large': 'clamp(1.75rem, 3vw, 4.5rem)',
         'medium': 'clamp(1rem, 1.8vw, 4rem)'
       },
+      fontFamily: {
+        roboto: ['var(--font-roboto)', 'sans-serif'],
+      }
     },
   },
   plugins: [],

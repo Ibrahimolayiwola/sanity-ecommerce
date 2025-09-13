@@ -76,7 +76,7 @@ const Home = ({  banners, categories }) => {
               Our customers Love Us <br /> Lets Look Reviews
             </h2>
             <div className="border-b-4 border-b-red-600 w-36 mt-4 mb-6"></div>
-            <p className="text-slate-400 font-semibold ">
+            <p className="text-slate-400 font-roboto">
               See why our gadgets are making waves. From seamless functionality
               to exceptional customer service, our customers share their thought.
             </p>

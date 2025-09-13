@@ -1,22 +1,24 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import Head from "next/head";
-import { MdOutlineShoppingCart } from "react-icons/md";
+import {Roboto} from 'next/font/google';
+
+const roboto = Roboto({
+    subsets: ["latin"],
+    weight: ["400", "500", "700"], // Choose the weights you need
+    variable: "--font-roboto", // Optional: to use as CSS variable
+  });
 
 const Layout = ({ children }) => {
   return (
     <>
-      <Head>
-        <title>Gadget Nest</title>
-      </Head>
-      <header>
-        <Navbar />
-      </header>
-      <main>{children}</main>
-      <footer>
-        <Footer />
-      </footer>
+        <header>
+          <Navbar />
+        </header>
+        <main className={roboto.className}>{children}</main>
+        <footer>
+          <Footer />
+        </footer>
     </>
   );
 };
